@@ -8,6 +8,7 @@
     @tailwind base;
     @tailwind components;
     @tailwind utilities;
+
     :global(body) {
         font-family: Avenir, Helvetica, Arial, sans-serif;
     }
