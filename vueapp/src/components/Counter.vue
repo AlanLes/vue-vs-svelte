@@ -1,9 +1,23 @@
 <script setup>
-import {ref} from 'vue';
+import {computed} from 'vue';
 
-const count = ref(0);
-const increment = () => count.value++;
-const decrement = () => count.value--;
+const emit = defineEmits(['update:count']);
+const props = defineProps({
+	count: {
+		type: Number,
+		default: () => 0,
+		validator(value) {
+			return !Number.isNaN(Number(value));
+		},
+	},
+});
+
+const localCount = computed({
+	get: () => props.count,
+	set: (value) => emit(`update:count`, value),
+});
+const increment = () => localCount.value++;
+const decrement = () => localCount.value--;
 </script>
 
 <template>
