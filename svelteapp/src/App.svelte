@@ -6,7 +6,7 @@
 
 <Counter bind:count={count}/>
 <hr class="my-5">
-<Form/>
+<Form class="border rounded-2xl shadow-xl py-2" />
 
 <style global lang="postcss">
     @tailwind base;

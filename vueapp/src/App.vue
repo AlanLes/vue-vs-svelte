@@ -9,7 +9,7 @@ const count = ref(0);
 <template>
 	<Counter v-model:count="count" />
 	<hr class="my-5">
-	<Form />
+	<Form class="border rounded-2xl shadow-xl py-2" />
 </template>
 
 <style>

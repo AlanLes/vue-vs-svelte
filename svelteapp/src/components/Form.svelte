@@ -6,7 +6,7 @@
   $: fullDetails = `${firstName} ${lastName}, ${age} years old`;
 </script>
 
-<form class="flex flex-col max-w-sm m-auto px-5 mt-5 gap-2">
+<form class="flex flex-col max-w-sm m-auto px-5 mt-5 gap-2 {$$props.class}">
 	<label for="firstName" class="text-sm text-yellow-800 mb-2">
 		Type your name
 		<input bind:value="{firstName}" id="firstName" type="text" placeholder="e.g. Johnny" class="w-full px-4 py-2 mt-1 font-semibold rounded-xl border border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:ring-offset-2">
