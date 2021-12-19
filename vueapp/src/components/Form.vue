@@ -1,5 +1,7 @@
 <script setup>
 import {computed, ref} from 'vue';
+import FormControl from './FormControl.vue';
+import Counter from './Counter.vue';
 
 const firstName = ref('');
 const lastName = ref('');
@@ -10,20 +12,31 @@ const fullDetails = computed(() => `${firstName.value} ${lastName.value}, ${age.
 
 <template>
 	<form class="flex flex-col max-w-sm m-auto px-5 mt-5 gap-2">
-		<label for="firstName" class="text-sm text-green-800 mb-2">
+		<FormControl
+			placeholder="e.g. Johnny"
+			name="firstName"
+			type="text"
+			v-model:modelValue="firstName"
+		>
 			Type your name
-			<input v-model="firstName" id="firstName" type="text" placeholder="e.g. Johnny" class="w-full px-4 py-2 mt-1 font-semibold rounded-xl border border-green-400 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2">
-		</label>
+		</FormControl>
 		
-		<label for="lastName" class="text-sm text-green-800 mb-2">
+		<FormControl
+			placeholder="e.g. Bravo"
+			name="lastName"
+			type="text"
+			v-model:modelValue="lastName"
+		>
 			Type your last name
-			<input v-model="lastName" id="lastName" type="text" placeholder="e.g. Bravo" class="w-full px-4 py-2 mt-1 font-semibold rounded-xl border border-green-400 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2">
-		</label>
+		</FormControl>
 		
-		<label for="age" class="text-sm text-green-800 mb-2">
+		<FormControl name="age" v-model:modelValue="age">
 			Enter age
-			<input v-model="age" id="age" type="number" class="block w-1/4 px-4 py-2 mt-1 font-semibold rounded-xl border border-green-400 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2">
-		</label>
+			<template #control="{age: modelValue}">
+				<Counter class="my-0" v-model:count="age" />
+			</template>
+		</FormControl>
+		
 		<p class="text-green-800">{{ (firstName && lastName && age) ? fullDetails : '' }}</p>
 	</form>
 </template>
