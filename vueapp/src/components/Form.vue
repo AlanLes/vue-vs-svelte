@@ -12,12 +12,12 @@ const fullDetails = computed(() => `${firstName.value} ${lastName.value}, ${age.
 	<form class="flex flex-col max-w-sm m-auto px-5 mt-5 gap-2">
 		<label for="firstName" class="text-sm text-green-800 mb-2">
 			Type your name
-			<input v-model="firstName" id="firstName" type="text" class="w-full px-4 py-2 mt-1 font-semibold rounded-xl border border-green-400 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2">
+			<input v-model="firstName" id="firstName" type="text" placeholder="e.g. Johnny" class="w-full px-4 py-2 mt-1 font-semibold rounded-xl border border-green-400 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2">
 		</label>
 		
 		<label for="lastName" class="text-sm text-green-800 mb-2">
 			Type your last name
-			<input v-model="lastName" id="lastName" type="text" class="w-full px-4 py-2 mt-1 font-semibold rounded-xl border border-green-400 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2">
+			<input v-model="lastName" id="lastName" type="text" placeholder="e.g. Bravo" class="w-full px-4 py-2 mt-1 font-semibold rounded-xl border border-green-400 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2">
 		</label>
 		
 		<label for="age" class="text-sm text-green-800 mb-2">
