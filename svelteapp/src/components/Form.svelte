@@ -1,4 +1,7 @@
 <script>
+	import FormControl from './FormControl.svelte';
+  import Counter from './Counter.svelte';
+
   let firstName = '';
   let lastName = '';
   let age = 0;
@@ -7,19 +10,32 @@
 </script>
 
 <form class="flex flex-col max-w-sm m-auto px-5 mt-5 gap-2 {$$props.class}">
-	<label for="firstName" class="text-sm text-yellow-800 mb-2">
+	<FormControl
+		placeholder="e.g. Johnny"
+		name="firstName"
+		type="text"
+		bind:value={firstName}
+	>
 		Type your name
-		<input bind:value="{firstName}" id="firstName" type="text" placeholder="e.g. Johnny" class="w-full px-4 py-2 mt-1 font-semibold rounded-xl border border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:ring-offset-2">
-	</label>
+	</FormControl>
 
-	<label for="lastName" class="text-sm text-yellow-800 mb-2">
+	<FormControl
+		placeholder="e.g. Bravo"
+		name="lastName"
+		type="text"
+		bind:value={lastName}
+	>
 		Type your last name
-		<input bind:value="{lastName}" id="lastName" type="text" placeholder="e.g. Bravo" class="w-full px-4 py-2 mt-1 font-semibold rounded-xl border border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:ring-offset-2">
-	</label>
+	</FormControl>
 
-	<label for="age" class="text-sm text-yellow-800 mb-2">
+	<FormControl
+		name="age"
+		type="text"
+		bind:value={age}
+	>
 		Enter age
-		<input bind:value="{age}" id="age" type="number" class="block w-1/4 px-4 py-2 mt-1 font-semibold rounded-xl border border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:ring-offset-2">
-	</label>
+		<Counter slot="control" bind:count="{age}" />
+	</FormControl>
+
 	<p class="text-yellow-800">{ (firstName && lastName && age) ? fullDetails : '' }</p>
 </form>
