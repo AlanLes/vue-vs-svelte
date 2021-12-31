@@ -1,5 +1,7 @@
 <script>
-	import FormControl from './FormControl.svelte';
+  import {addSingleUser} from '../store';
+  import Button from './Button.svelte';
+  import FormControl from './FormControl.svelte';
   import Counter from './Counter.svelte';
 
   let firstName = '';
@@ -7,9 +9,21 @@
   let age = 0;
 
   $: fullDetails = `${firstName} ${lastName}, ${age} years old`;
+
+  const handleAddUser = async () => {
+    if (!(firstName && lastName && age > 0)) return;
+    await addSingleUser(firstName, lastName, age);
+    confirm(`Added user: ${fullDetails}`);
+    firstName = '';
+    lastName = '';
+    age = 0;
+  };
 </script>
 
-<form class="flex flex-col max-w-sm m-auto px-5 mt-5 gap-2 {$$props.class}">
+<form
+	class="flex flex-col max-w-sm m-auto px-5 py-5 mt-5 gap-2 {$$props.class}"
+	on:submit|preventDefault={handleAddUser}
+>
 	<FormControl
 		placeholder="e.g. Johnny"
 		name="firstName"
@@ -34,8 +48,7 @@
 		bind:value={age}
 	>
 		Enter age
-		<Counter slot="control" bind:count="{age}" />
+		<Counter slot="control" bind:count="{age}"/>
 	</FormControl>
-
-	<p class="text-yellow-800">{ (firstName && lastName && age) ? fullDetails : '' }</p>
+	<Button type="submit">Add User</Button>
 </form>

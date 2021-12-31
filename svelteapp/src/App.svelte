@@ -1,12 +1,15 @@
 <script>
   import Counter from './components/Counter.svelte';
   import Form from './components/Form.svelte';
+  import UsersList from './components/UsersList.svelte';
+
   let count = 0;
 </script>
 
 <Counter bind:count={count}/>
 <hr class="my-5">
 <Form class="border rounded-2xl shadow-xl py-2" />
+<UsersList class="border rounded-2xl shadow-xl py-2 mb-5" />
 
 <style global lang="postcss">
     @tailwind base;
