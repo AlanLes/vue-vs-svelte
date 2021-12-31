@@ -1,17 +1,30 @@
 <script setup>
 import {computed, ref} from 'vue';
+import {useUsersStore} from '../store';
 import FormControl from './FormControl.vue';
 import Counter from './Counter.vue';
+import Button from './Button.vue';
+
+const usersStore = useUsersStore();
 
 const firstName = ref('');
 const lastName = ref('');
 const age = ref(0);
 
 const fullDetails = computed(() => `${firstName.value} ${lastName.value}, ${age.value} years old`);
+
+const handleAddUser = async () => {
+	if (!(firstName.value && lastName.value && age.value > 0)) return;
+	await usersStore.addUser(firstName.value, lastName.value, age.value);
+	confirm(`Added user: ${fullDetails.value}`);
+	firstName.value = '';
+	lastName.value = '';
+	age.value = 0;
+}
 </script>
 
 <template>
-	<form class="flex flex-col max-w-sm m-auto px-5 mt-5 gap-2">
+	<form class="flex flex-col max-w-sm m-auto px-5 py-5 mt-5 gap-2" @submit.prevent="handleAddUser">
 		<FormControl
 			placeholder="e.g. Johnny"
 			name="firstName"
@@ -36,7 +49,6 @@ const fullDetails = computed(() => `${firstName.value} ${lastName.value}, ${age.
 				<Counter class="my-0" v-model:count="age" />
 			</template>
 		</FormControl>
-		
-		<p class="text-green-800">{{ (firstName && lastName && age) ? fullDetails : '' }}</p>
+		<Button type="submit">Add User</Button>
 	</form>
 </template>
